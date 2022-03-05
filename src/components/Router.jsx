@@ -10,7 +10,10 @@ const Router = () => {
           path='/'
           element={<Navigate replace to='/search' />}
         />
-        <Route path='/search' element={<Results />} />
+        <Route path={"/search"} element={<Results />} />
+        <Route path={"/news"} element={<Results />} />
+        <Route path={"/images"} element={<Results />} />
+        <Route path={"/videos"} element={<Results />} />
       </Routes>
     </div>
   );
