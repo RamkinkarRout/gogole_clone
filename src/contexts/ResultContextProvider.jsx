@@ -8,7 +8,7 @@ export const ResutlContextProvider = ({ children }) => {
   const [results, setResults] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
-  const [query, setQuery] = React.useState("Elon musk");
+  const [query, setQuery] = React.useState(" ");
 
   const fetchResults = async (type) => {
     setLoading(true);
@@ -19,10 +19,10 @@ export const ResutlContextProvider = ({ children }) => {
       const response = await fetch(`${BASE_URL}${type}`, {
         method: "GET",
         headers: {
+          "x-proxy-location": "IN",
           "x-rapidapi-host":
             "google-search3.p.rapidapi.com",
-          "x-rapidapi-key":
-            "cf6d36c213msh74c96d1d65cd9a9p11cb79jsn9f6235f90920",
+          "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         },
       });
       const data = await response.json();
