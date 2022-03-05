@@ -48,11 +48,14 @@ const Results = () => {
                     {title}
                   </p>
                 </a>
-                <p className='text-sm'>
-                  {description.length > 200
-                    ? description.substring(0, 200) + "..."
-                    : description}
-                </p>
+                {description && (
+                  <p className='text-sm'>
+                    {description.length > 200
+                      ? description.substring(0, 200) +
+                        "..."
+                      : description}
+                  </p>
+                )}
               </div>
             )
           )}
@@ -106,9 +109,11 @@ const Results = () => {
                   rel='noopener noreferrer'
                   className='hover:underline'
                 >
-                  <p className='text-lg dark:text-blue-300 text-blue-700'>
-                    {title}
-                  </p>
+                  {title && (
+                    <p className='text-lg dark:text-blue-300 text-blue-700'>
+                      {title}
+                    </p>
+                  )}
                 </a>
                 <div className='flex gap-4'>
                   <a
@@ -120,11 +125,13 @@ const Results = () => {
                     {source?.href}
                   </a>
                 </div>
-                <div>
-                  <p className='text-sm'>
-                    {title_detail.value}
-                  </p>
-                </div>
+                {title_detail && (
+                  <div>
+                    <p className='text-sm'>
+                      {title_detail.value}
+                    </p>
+                  </div>
+                )}
               </div>
             )
           )}
@@ -132,7 +139,27 @@ const Results = () => {
       );
 
     case "/videos":
-      return "videos";
+      return (
+        <div className='flex flex-wrap '>
+          {results?.map((video, index) => (
+            <div key={index} className='p-2 space-y-3'>
+              {video.title && (
+                <h2 className='text-lg font-semibold'>
+                  {video.title.length > 40
+                    ? video.title.substring(0, 40) + "..."
+                    : video.title}
+                </h2>
+              )}
+              <ReactPlayer
+                url={video?.link}
+                controls
+                width='335px'
+                height='200px'
+              />
+            </div>
+          ))}
+        </div>
+      );
 
     default:
       return error;
