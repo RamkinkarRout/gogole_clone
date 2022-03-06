@@ -4,10 +4,9 @@ import { useResultContext } from "../contexts/ResultContextProvider";
 import Links from "./Links";
 
 const Search = () => {
-  const [text, setText] = useState("Ironman");
+  const [text, setText] = useState("Elon Musk");
   const { setQuery } = useResultContext();
   const [debouncedValue] = useDebounce(text, 300);
-  console.log(debouncedValue);
   useEffect(() => {
     if (debouncedValue) {
       setQuery(debouncedValue);
